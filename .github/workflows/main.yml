@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CDN_URL: https://frontend-static.website.yandexcloud.net/
+      BRANCH: ${{ github.head_ref }}
     defaults: 
       run:
         working-directory: ./simple/frontend
@@ -49,8 +50,7 @@ jobs:
           pnpm run deploy
         env:
           S3_CMD_CONFIG: ${{secrets.S3_CMD_CONFIG}}
-          BRANCH: ${{ github.head_ref }}
-          
+         
       - name: PR Comment
         uses: thollander/actions-comment-pull-request@v1
         with:
