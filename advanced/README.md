@@ -1,8 +1,10 @@
 ### Advanced example
 
 1. Create two s3 buckets: dp-manifests & dp-static
-1. Install packages `pnpm i`
-1. Build and deploy frontend main
+
+2. Install packages `pnpm i`
+
+3. Build and deploy frontend main
 ```bash
 cd frontend
 
@@ -26,7 +28,7 @@ BRANCH=feature-1111 pnpm run build
 BRANCH=feature-1111 pnpm run deploy
 ```
 
-1. Build and start server
+4. Build and start server
 ```bash
 cd ../deploy-server
 
@@ -41,7 +43,7 @@ export S3_SECRET_KEY="key"
 pnpm start
 ```
 
-1. Test
+5. Test
 
 ```bash
 
