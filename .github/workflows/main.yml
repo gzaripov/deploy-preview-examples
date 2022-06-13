@@ -55,4 +55,4 @@ jobs:
         with:
           repo-token: ${{secrets.GITHUB_TOKEN}}
           comment_includes: 'Environment is deployed to'
-          message: Environment is deployed to ${{ env.CDN_URL }}${{ github.ref_name }}
+          message: Environment is deployed to ${{ env.CDN_URL }}${{ github.head_ref }}
