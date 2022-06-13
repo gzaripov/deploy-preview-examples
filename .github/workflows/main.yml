@@ -31,7 +31,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Setup s3cmd
-        run: pip3 install s3cmd --no-cache
+        run: pip3 install s3cmd --no-cache && pip3 uninstall -y python-magic
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.2
@@ -57,4 +57,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           comment_includes: 'Environment is deployed to'
-          message: Environment is deployed to ${{ env.CDN_URL }}${{ github.head_ref }}/
+          message: Environment is deployed to ${{ env.CDN_URL }}${{ env.BRANCH }}/
+
