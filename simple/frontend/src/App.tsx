@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
+        <p>Welcome to Deploy Preview!</p>
         <p>
           <button type="button" onClick={() => setCount((count) => count + 1)}>
             count is: {count}
@@ -25,7 +25,7 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React & Deploy Preview
+            Learn React
           </a>
           {' | '}
           <a
