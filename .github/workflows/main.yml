@@ -54,4 +54,5 @@ jobs:
         uses: github-actions-up-and-running/pr-comment@v1.0.1
         with:
           repo-token: ${{secrets.GITHUB_TOKEN}}
-          message: Environment is deployed to ${CDN_URL}${GITHUB_REF_NAME}
+          comment_includes: 'Environment is deployed to'
+          message: Environment is deployed to ${{ env.CDN_URL }}${{ github.ref_name }}
