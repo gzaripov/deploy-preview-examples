@@ -49,6 +49,7 @@ jobs:
           pnpm run deploy
         env:
           S3_CMD_CONFIG: ${{secrets.S3_CMD_CONFIG}}
+          BRANCH: ${{ github.head_ref }}
           
       - name: PR Comment
         uses: thollander/actions-comment-pull-request@v1
