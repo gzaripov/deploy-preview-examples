@@ -31,6 +31,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Setup s3cmd
+        # remove python-magic because it is broken
+        # https://github.com/s3tools/s3cmd/issues/643
         run: pip3 install s3cmd --no-cache && pip3 uninstall -y python-magic
 
       - name: Setup pnpm
