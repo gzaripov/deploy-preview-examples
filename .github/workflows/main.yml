@@ -1,0 +1,52 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build_simple:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    env:
+      CDN_URL: https://frontend-static.website.yandexcloud.net/
+    defaults: 
+      run:
+        working-directory: ./simple/frontend
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - name: Setup s3cmd
+        uses: s3-actions/s3cmd@v1.2.0
+        with:
+          # s3 region (default region depends on the provider)
+          region: ru-central1
+          # s3 access key
+          access_key: ${{ secrets.S3_ACCESS_KEY }}
+          # s3 secret key
+          secret_key: ${{ secrets.S3_SECRET_KEY }}
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.2
+
+      - name: install
+        run: pnpm i
+        
+      - name: build
+        run: pnpm run build
+        
+      - name: deploy
+        run: pnpm run deploy
