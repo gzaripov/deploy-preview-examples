@@ -1,4 +1,0 @@
-[default]
-bucket_location = ru-central1
-host_base = storage.yandexcloud.net
-host_bucket = %(bucket)s.storage.yandexcloud.net

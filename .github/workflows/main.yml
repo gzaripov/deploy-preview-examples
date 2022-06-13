@@ -29,19 +29,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: Install s3cmd
-        uses: s3-actions/s3cmd@v1.2.0
-        with:
-          # s3 region (default region depends on the provider)
-          region: ru-central1
-          # s3 access key
-          access_key: ${{ secrets.S3_ACCESS_KEY }}
-          # s3 secret key
-          secret_key: ${{ secrets.S3_SECRET_KEY }}
-
       - name: Setup s3cmd
-        run: mv .s3cmd ~/.s3cmd
-          
+        run: pip3 install s3cmd --no-cache
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
@@ -54,4 +44,8 @@ jobs:
         run: pnpm run build
         
       - name: deploy
-        run: pnpm run deploy
+        run: |
+          echo "$S3_CMD_CONFIG" > $HOME/.s3cfg
+          pnpm run deploy
+        env:
+          S3_CMD_CONFIG: ${{secrets.S3_CMD_CONFIG}}
