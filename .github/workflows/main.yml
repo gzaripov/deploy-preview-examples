@@ -42,8 +42,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
-          run_install: false
-          cwd: ./simple/frontend
+          version: 6.32.2
 
       - name: install
         run: pnpm i
