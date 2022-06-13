@@ -11,7 +11,9 @@ export default defineConfig(({ command }) => {
   const CDN_URL = process.env.CDN_URL;
 
   if (CDN_URL && command === "build") {
-    const branch = execSync("git branch --show-current").toString().trim();
+    const branch =
+      process.env.BRANCH ||
+      execSync("git branch --show-current").toString().trim();
 
     if (!CDN_URL) {
       throw new Error("CDN_URL env variable is not passed");

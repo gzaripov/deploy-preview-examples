@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CDN_URL: https://frontend-static.website.yandexcloud.net/
+      BRANCH: ${{ github.head_ref }}
     defaults: 
       run:
         working-directory: ./simple/frontend
@@ -49,3 +50,10 @@ jobs:
           pnpm run deploy
         env:
           S3_CMD_CONFIG: ${{secrets.S3_CMD_CONFIG}}
+         
+      - name: PR Comment
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          comment_includes: 'Environment is deployed to'
+          message: Environment is deployed to ${{ env.CDN_URL }}${{ github.head_ref }}/
