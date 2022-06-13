@@ -18,6 +18,5 @@ pnpm i # (or npm i)
 pnpm run build
 
 # deploy frontend
-
 pnpm run deploy
 ```
